@@ -1,7 +1,6 @@
 {
     "name": "dawaa/jacwright-restserver-extended",
     "description": "An extended version of jacwright/RestServer",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "Alejandro Andersson",
