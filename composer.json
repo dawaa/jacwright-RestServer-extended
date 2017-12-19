@@ -7,6 +7,7 @@
             "email": "alejandro@thelad.io"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "jacwright/restserver": "dev-master",
         "php-di/php-di": "^5.4",
