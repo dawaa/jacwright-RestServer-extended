@@ -1,0 +1,26 @@
+{
+    "name": "dawaa/jacwright-restserver-extended",
+    "description": "An extended version of jacwright/RestServer",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Alejandro Andersson",
+            "email": "alejandro@thelad.io"
+        }
+    ],
+    "require": {
+        "jacwright/restserver": "dev-master",
+        "php-di/php-di": "^5.4",
+        "phpunit/phpunit": "^6.1.4",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "DAwaa\\Core\\"  : [ "src/Core" ],
+            "DAwaa\\Tests\\" : [ "tests/" ]
+        }
+    },
+    "require-dev": {
+        "phpunit/dbunit": "^3.0"
+    }
+}
