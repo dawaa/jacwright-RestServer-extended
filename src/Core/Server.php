@@ -20,6 +20,13 @@ class Server {
     protected $container;
 
     public function __construct() {
+    }
+
+    public function configure(array $config = []) {
+        $this->config = array_merge( $this->config, $config );
+    }
+
+    public function start() {
         $loader       = $this->getAutoloader();
         $resourcesDir = $this->getResourcesDir();
         $config       = $this->findConfig();
@@ -64,13 +71,7 @@ class Server {
 
         $DAwaaRestServerExtendedContainer = $container;
         $DAwaaRestServerExtendedConfig    = $config;
-    }
 
-    public function configure(array $config = []) {
-        $this->config = array_merge( $this->config, $config );
-    }
-
-    public function start() {
         // Get route data or if invalid data retrieved we will handle those
         // cases within the method already
         list(
