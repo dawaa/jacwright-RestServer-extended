@@ -19,7 +19,7 @@ class Core extends Database {
     public function __construct() {
         parent::__construct();
 
-        global $container;
+        $container = Server::getContainer();
 
         $Helpers = $container->get( 'DAwaa\Core\Helpers' );
 

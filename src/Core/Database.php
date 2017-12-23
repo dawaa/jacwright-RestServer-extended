@@ -37,7 +37,7 @@ class Database extends Connector {
      * @return void
      */
     public function __construct($calltype = 'GET') {
-        $this->config   = $this::getConfig();
+        $this->config   = Server::getConfig();
         $this->calltype = strtoupper( $calltype ); // @TODO shouldnt be here imo
         $this->dbh      = $this->initializeDatabaseHandler( $this->config );
     }
