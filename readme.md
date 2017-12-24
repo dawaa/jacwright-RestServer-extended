@@ -4,26 +4,26 @@ Jacwright / REST Server (Extended)
 The backbone of this project is this repository, [jacwright/RestServer](https://github.com/jacwright/RestServer).
 
 ## Table of Contents
-* [Supports]()
-    * [Types of request methods]()
-    * [Database adapters]()
-* [Installation]()
-    * [Using composer]()
-    * [Directly usage]()
-* [Configuration]()
-    * [Setting up the database]()
-        * [Using composer]()
-        * [Directly usage]()
-    * [Setting up PHPUnit]()
-* [Whats a Resource?]()
-* [Looking at a Controller]()
-    * [A method inside Controller]()
-    * [Method annotations]()
-    * [Response structure-checking]()
-* [Looking at a Model]()
-* [Database]()
-    * [Helpers]()
-    * [Example usage]()
+* [Supports](#supports)
+    * [Types of request methods](#types-of-request-methods)
+    * [Database adapters](#database-adapters)
+* [Installation](#installation)
+    * [Using composer](#using-composer)
+    * [Directly usage](#directly-usage)
+* [Configuration](#configuration)
+    * [Setting up the database](#setting-up-the-database)
+        * [Using composer](#using-composer-1)
+        * [Directly usage](#directly-usage-1)
+    * [Setting up PHPUnit](#setting-up-phpunit)
+* [Whats a Resource?](#whats-a-resource)
+* [Looking at a Controller](#looking-at-a-controller)
+    * [A method inside Controller](#a-method-inside-controller)
+    * [Method annotations](#method-annotations)
+    * [Response structure-checking](#response-structure-checking)
+* [Looking at a Model](#looking-at-a-model)
+* [Database](#database)
+    * [Helpers](#helpers)
+    * [Example usage](#example-usage)
 
 
 -----------------------------------------------------------------
@@ -39,7 +39,7 @@ Available methods are
 * ~~DELETE~~
 * ~~PATCH~~
 
-#### Databases adapters
+#### Database adapters
 * MySQLi
 * ~~PDO~~
 * ~~PostGreSQL~~
@@ -54,7 +54,7 @@ Available methods are
 **5 steps**
 1. Run `$ composer require dawaa/jacwright-restserver-extended` to download this project into your vendor/ directory.
 2. Add ./_config.php_ at the root of your project, leave it empty for now.
-    * See [Configuration - Setting up the database]() later...
+    * See [Configuration - Setting up the database](#setting-up-the-database) later...
 3. Again at the root of your project, add the following to the _./index.php_ file to quickly determine if things seems to be working.
     ```php
     // index.php
@@ -99,7 +99,7 @@ Awesome it's working, now the server acknowledged our response but since we didn
     $ composer install
     ```
 3. Add _./src/config.php_, leave it empty for now.
-    * See [Configuration - Setting up the database]() later...
+    * See [Configuration - Setting up the database](#setting-up-the-database) later...
 4. Go to your local api, **my** virtual host is _http://api.local/_. It should redirect you and append **/v1/** to your url.
 5. You should now see the JSON output below.
     ```json
@@ -753,6 +753,7 @@ Within both a Controller and a Model you'll have database helpers available to y
 
 #### Example usage
 For the examples I will be querying and var_dump() the results for each helper method.
+
 **Note** I won't be including all properties, only a few, this is merely to show what the different results look like.
 
 **query() combined with row() and bindings**
