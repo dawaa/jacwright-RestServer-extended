@@ -192,6 +192,17 @@ class Server {
             );
         }
 
+        // Fallback to port 3306
+        if ( ! array_key_exists( 'db_port', $config ) ) {
+            $config[ 'db_port' ] = 3306;
+        }
+
+        if ( ! array_key_exists( 'charset', $config ) ) {
+            $config[ 'charset' ] = 'utf8';
+        }
+
+
         return $config;
     }
+
 }
