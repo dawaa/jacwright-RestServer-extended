@@ -8,7 +8,7 @@ The backbone of this project is this repository, [jacwright/RestServer](https://
     * [Request methods](#request-methods)
     * [Adapters](#adapters)
 * [Installation](#installation)
-    * [.htaccess]()
+    * [.htaccess](#htaccess)
     * [Using composer](#using-composer)
     * [Directly usage](#directly-usage)
 * [Configuration](#configuration)
