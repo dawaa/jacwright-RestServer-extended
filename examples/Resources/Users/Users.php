@@ -15,6 +15,13 @@ class Users extends Controller {
         return $this->respondWith( $users );
     }
 
+    /**
+     * @url GET /email/$userId
+     */
+    public function fetchUserEmail($userId = null) {
+        return $this->respondWith();
+    }
+
     public function testOptions() {
         return array(
             'im a nerd'
