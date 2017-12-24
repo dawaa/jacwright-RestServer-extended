@@ -8,6 +8,7 @@ The backbone of this project is this repository, [jacwright/RestServer](https://
     * [Request methods](#request-methods)
     * [Adapters](#adapters)
 * [Installation](#installation)
+    * [.htaccess]()
     * [Using composer](#using-composer)
     * [Directly usage](#directly-usage)
 * [Configuration](#configuration)
@@ -50,6 +51,24 @@ Available methods are
 
 ## Installation
 > **NOTE** that you'll see me use _http://api.local/_ in the examples below.. This is simply a virtual host set up on my own local machine and I advise you to do the same, but the name could be totally different, of course.
+
+
+#### .htaccess
+> **NOTE** that you might have to tweak with .htaccess to get it right, unless you think e.g. `http://api.local/index.php/users` would be attractive.
+
+If you `$ git clone`'d the project then you'll already have an _.htaccess_ in the root of the project.. If you didn't then you would have to add it yourself.. here's how mine look like though..
+
+```
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !v1/(.*)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* http://%{HTTP_HOST}/v1/ [QSA]
+RewriteRule ^v1/(.*)/?$ index.php?segments=$1 [QSA,L]
+```
+
+So what it does is that it takes anything and redirects you to `/v1/SEGMENTS_IF_YOU_HAVE_ANY` no matter what. You might want to have your own base url, but for me I would just stick with `v1` for as long as possible since a REST API is not supposed to change that often anyway, if you consider its users.
 
 #### Using Composer
 > **NOTE** Make sure that you got Composer installed globally on your system, otherwise check it out **[here](https://getcomposer.org/doc/00-intro.md#globally)** how to install it.
