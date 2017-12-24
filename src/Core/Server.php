@@ -176,7 +176,7 @@ class Server {
         // Check config first
         if ( array_key_exists( 'configPath', $this->config )
             && file_exists( $this->config[ 'configPath' ] ) ) {
-            $config = require $this->config[ 'configPath' ] . 'config.php';
+            $config = require $this->config[ 'configPath' ];
 
         // If run by e.g. an index.php file and the restserver is loaded
         // using composer
