@@ -367,7 +367,7 @@ class RestServerExtended extends RestServer {
         $directMatch   = false;
         $directMatches = [];
         foreach ( $urls as $url => $call ) {
-            if ( strpos( $this->url, $url ) !== false ) {
+            if ( strpos( $url, $this->url ) !== false ) {
                 $directMatch           = true;
                 $directMatches[ $url ] = $call;
             }
