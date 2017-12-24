@@ -17,10 +17,12 @@ The backbone of this project is this repository, [jacwright/RestServer](https://
     * [Setting up PHPUnit](#setting-up-phpunit)
 * [Whats a Resource?](#whats-a-resource)
 * [Looking at a Controller](#looking-at-a-controller)
+    * [The init() method]()
     * [A method inside Controller](#a-method-inside-controller)
     * [Method annotations](#method-annotations)
     * [Response structure-checking](#response-structure-checking)
 * [Looking at a Model](#looking-at-a-model)
+    * [The init() method]()
 * [Database](#database)
     * [Helpers](#helpers)
     * [Example usage](#example-usage)
@@ -319,6 +321,38 @@ http://api.local/v1/users/
 Or single out a user by adding their ID
 ```
 http://api.local/v1/users/123
+```
+
+#### The init() method
+Sometimes we might want to set up a few things before the code is actually run.. For this you can use the `#init()` method within the Controller. Like so:
+
+```php
+// ./Resources/Users/Users.php
+<?php
+namespace Resources\Users;
+
+use DAwaa\Core\Controller;
+
+class Users extends Controller {
+
+    public function init() {
+        // .. code here will be run before anything else
+    }
+
+    /**
+     * @url GET /$userId
+     */
+    public function fetchUsers($userId) {
+        if ( $userId === null ) {
+            $response = $this->model->fetchUsers();
+        } else {
+            $response = $this->model->fetchUser( $userId );
+        }
+
+        return $this->respondWith( $response );
+    }
+
+}
 ```
 
 #### A method inside Controller
@@ -710,8 +744,8 @@ I'm sure you've noticed earlier from reading the documentation that I've used `$
 Again I will use the resource Users as our example here.
 
 By default the library will look for these two files, under the Model/ directory of that current Resource/
-* ./Resources/Model/Users.php
-* ./Resources/Model/UsersModel.php
+* _./Resources/Model/Users.php_
+* _./Resources/Model/UsersModel.php_
 
 But if you'd like to point your controller to use another Model, then you could add the following annotation `@model` to your Controller / Resource class. Which is _./Resources/Users/Users.php_.
 
@@ -731,7 +765,94 @@ class Users extends Controller {
 }
 ```
 
+**An actual look inside a Model**
+```php
+// ./Resources/Users/Model/UsersModel.php
+<?php
+namespace Resources\Users\Model;
+
+use DAwaa\Core\Model;
+
+class UsersModel extends Model {
+
+    public function fetchUsers() {
+        // You can either directly write your queries like this
+        $users = $this->query( 'select * from users' )->result_array();
+
+        // Or make use of static variables inside classes to allow for some
+        // sort of namespaceing to easier structure bigger applications (imho..)
+        $sql   = Statements\Select::$all;
+        $users = $this->query( $sql )->result_array();
+
+        return $users;
+    }
+
+}
+```
+
+I'll show you how the directory structure would look to achieve above namespaceing, which I fancy quite a lot..
+
+```bash
+jacwright-restserver-extended/Resources/
+`- Users/
+   |- Model/
+   |  |- Statements/          # example structure and files..
+   |  |  |- Select.php
+   |  |  |- Delete.php
+   |  |  `- Update.php
+   |  `- UsersModel.php
+   `- Users.php
+```
+
+Also let's see how the _Statements/Select.php_ would look like..
+
+```php
+<?php
+namespace Resources\Users\Model\Statements;
+
+class Select {
+    public static $all =
+        "
+        select
+            *
+        from
+            users
+        ";
+}
+```
+
 So once a Model has been found by the library it will add it to the context of our Controller under `$this->model`.. So all public methods defined in your Model will be available under the earlier mentioned property of the Controller.
+
+#### The init() method
+Sometimes we might want to set up a few things before the code is actually run.. For this you can use the `#init()` method within the Controller. Like so:
+
+```php
+// ./Resources/Users/Model/UsersModel.php
+<?php
+namespace Resources\Users\Model;
+
+use DAwaa\Core\Model;
+
+class UsersModel extends Model {
+
+    public function init() {
+        // .. code here will be run before anything else
+    }
+
+    public function fetchUsers() {
+        // You can either directly write your queries like this
+        $users = $this->query( 'select * from users' )->result_array();
+
+        // Or make use of static variables inside classes to allow for some
+        // sort of namespaceing to easier structure bigger applications (imho..)
+        $sql   = Statements\Select::$all;
+        $users = $this->query( $sql )->result_array();
+
+        return $users;
+    }
+
+}
+```
 
 ## Database
 Within both a Controller and a Model you'll have database helpers available to you under `$this` context. And the actual instance of the database handler could be retrieved like this  `$this->dbh`.
