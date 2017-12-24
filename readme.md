@@ -806,7 +806,7 @@ Result:
 Documentation will be added later...
 
 ## Looking at a Model
-I'm sure you've noticed earlier from reading the documentation that I've used `$this->model->SOME_METHOD()` a few times. So how does all work?
+I'm sure you've noticed earlier from reading the documentation that I've used `$this->model->SOME_METHOD()` a few times. So how does it all work?
 
 Again I will use the resource Users as our example here.
 
