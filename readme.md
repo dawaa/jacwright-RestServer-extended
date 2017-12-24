@@ -5,8 +5,8 @@ The backbone of this project is this repository, [jacwright/RestServer](https://
 
 ## Table of Contents
 * [Supports](#supports)
-    * [Types of request methods](#types-of-request-methods)
-    * [Database adapters](#database-adapters)
+    * [Request methods](#request-methods)
+    * [Adapters](#adapters)
 * [Installation](#installation)
     * [Using composer](#using-composer)
     * [Directly usage](#directly-usage)
@@ -33,7 +33,7 @@ The backbone of this project is this repository, [jacwright/RestServer](https://
 ## Supports
 This will tell you what the project currently supports in terms of HTTP request methods available and what types of databases you can use.
 
-#### Types of request methods
+#### Request methods
 Available methods are
 * GET
 * POST
@@ -41,7 +41,7 @@ Available methods are
 * ~~DELETE~~
 * ~~PATCH~~
 
-#### Database adapters
+#### Adapters
 * MySQLi
 * ~~PDO~~
 * ~~PostGreSQL~~
